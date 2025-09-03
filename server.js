@@ -14,14 +14,17 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 const app = express();
 
 // Middleware to handle CORS
+const allowedOrigins = [
+  'http://localhost:5173', // Local dev
+  'https://job-frontend-amber.vercel.app', // Your deployed frontend
+];
 app.use(
   cors({
-    origin: '*',
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-
 // Connect Database
 connectDB();
 
